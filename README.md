@@ -37,6 +37,7 @@ helm install valheim-server valheim-k8s/valheim-k8s  \
 | `networking.gamePort`                | The UDP start port the server will listen on                           | `2456`                    |
 | `networking.nodePort`                | When service type is `NodePort`, assign a fixed UDP port to the server | `""`                      |
 | `networking.publishQueryPort`        | Expose the Steam query port (gamePort + 1)                             | `true`                    |
+| `networking.externalIP`              | Specifies a fixed external IP                                          | None                      |
 | `nodeSelector`                       |                                                                        | `{}`                      |
 | `tolerations`                        |                                                                        | `[]`                      |
 | `image.repository`                   | Specifies container image repository                                   | `lloesche/valheim-server` |
