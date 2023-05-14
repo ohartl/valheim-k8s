@@ -15,10 +15,6 @@ spec:
     {{- if eq .Values.networking.serviceType "LoadBalancer" }}
     nodePort: {{ default "" (.Values.networking.nodePort | int) }}
     {{- end }}
-    {{- if .Values.networking.externalIP }}
-    externalIPs:
-    - {{ .Values.networking.externalIP }}
-    {{- end }}
   {{ if .Values.networking.publishQueryPort }}
   - name: queryport
     port: {{ .Values.networking.gamePort | int | add 1 }}
@@ -30,11 +26,11 @@ spec:
     {{- if eq .Values.networking.serviceType "LoadBalancer" }}
     nodePort: {{ default "" (.Values.networking.nodePort | int | add 1) }}
     {{- end }}
-    {{- if .Values.networking.externalIP }}
-    externalIPs:
-    - {{ .Values.networking.externalIP }}
-    {{- end }}
   {{ end }}
+  {{- if .Values.networking.externalIP }}
+  externalIPs:
+  - {{ .Values.networking.externalIP }}
+  {{- end }}
   type: {{ .Values.networking.serviceType }}
   selector:
     app: {{ .Release.Name }}
