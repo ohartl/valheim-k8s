@@ -72,6 +72,10 @@ spec:
           mountPath: /extraVolumes/{{ .name }}
         {{ end }}
         resources: {{- toYaml .Values.resources | nindent 10 }}
+        securityContext:
+          capabilities:
+            add:
+            - SYS_NICE
       volumes:
       {{ if eq .Values.storage.kind "hostvol" }}
       - name: gamefiles
